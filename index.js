@@ -21,6 +21,8 @@ const logger = createLogger({
   ]
 });
 
+const { JSON_FILE } = process.env
+
 const start = new Date()
 
 const test = speedtest()
@@ -28,7 +30,7 @@ const test = speedtest()
 test.on('data', (speedtestData) => {
   const stop = new Date()
 
-  fs.readFile('speedtest.json', (err, jsonData) => {
+  fs.readFile(JSON_FILE, (err, jsonData) => {
     if (err) {
       logger.error(err)
     }
@@ -47,7 +49,7 @@ test.on('data', (speedtestData) => {
       upload: `${speedtestData.speeds.upload}Mbps`
     })
 
-    fs.writeFile('speedtest.json', JSON.stringify(obj), (err) => {
+    fs.writeFile(JSON_FILE, JSON.stringify(obj), (err) => {
       if (err) {
         logger.error(err)
       }
