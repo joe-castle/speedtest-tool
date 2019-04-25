@@ -4,8 +4,6 @@ const fs = require('fs')
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, label, printf } = format;
 
-const { CINEMA_URI } = process.env
-
 const myFormat = printf(({ level, message, label, timestamp }) => {
   return `${timestamp} [${label}] ${level}: ${message}`;
 });
@@ -49,7 +47,7 @@ test.on('data', (speedtestData) => {
       upload: `${speedtestData.speeds.upload}Mbps`
     })
 
-    fs.writeFile('speedtest.json', JSON.stringify(obj), (err, data) => {
+    fs.writeFile('speedtest.json', JSON.stringify(obj), (err) => {
       if (err) {
         logger.error(err)
       }
