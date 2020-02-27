@@ -102,5 +102,5 @@ typings/
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
-
+output.log
 # End of https://www.gitignore.io/api/node,visualstudiocode
